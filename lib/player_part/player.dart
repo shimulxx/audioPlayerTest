@@ -17,8 +17,12 @@ class _PlayerWidgetState extends State<PlayerWidget> {
   var totalDuration = 1.0;
   var seconds = 1.0;
 
+  dynamic sub1, sub2;
+
   @override
   void dispose() {
+    sub1.cancel();
+    sub2.cancel();
     player.dispose();
     super.dispose();
   }
@@ -31,13 +35,13 @@ class _PlayerWidgetState extends State<PlayerWidget> {
     // player.androidAudioSessionIdStream.listen((event) {
     //   print('testing: ${event}');
     // });
-    player.positionStream.listen((event) {
+    sub1 = player.positionStream.listen((event) {
       setState(() {
         seconds = event.inSeconds.toDouble();
       });
     });
 
-    player.durationStream.listen((event) {
+    sub2 = player.durationStream.listen((event) {
       setState(() {
         totalDuration = event!.inSeconds.toDouble();
       });
