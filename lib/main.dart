@@ -100,10 +100,10 @@ class _SlideWidgetState extends State<SlideWidget> {
         ),
       ),
       child: SlidingUpPanel(
-        boxShadow: [
+        boxShadow: const [
            CustomBoxShadow(
               color: Colors.black,
-              offset: new Offset(10.0, 10.0),
+              offset: Offset(10.0, 10.0),
               blurRadius: 0.0,
               blurStyle: BlurStyle.outer
           )
